@@ -20,6 +20,7 @@ class AlumnoTest {
 
         // Crear materia
         Materia IyS = new Materia("Ingenieria y Sociedad");
+        Materia SyPdN = new Materia("Sistemas y Procesos de Negocios");
 
         // Agregar materia aprobada
 
@@ -28,6 +29,9 @@ class AlumnoTest {
         // Verificar que la materia haya sido agregada
 
         assertTrue(yo.getMateriasAprobadas().contains(IyS));
+        assertFalse(yo.getMateriasAprobadas().contains(SyPdN));
+
     }
+
   
 }

@@ -16,7 +16,7 @@ class InscripcionTest  {
     public void aprobado(){
         // Crear alumno
         Alumno yo = new Alumno("Bianca", "Castoldi", 12345);
-
+        Alumno otro = new Alumno("Juan", "Perez", 67890);
         // Crear Materias
         Materia LyED = new Materia("Logica y Estructuras Discretas");
         Materia AyED = new Materia("Algoritmos y Estructura de Datos");
@@ -33,9 +33,11 @@ class InscripcionTest  {
 
         // Crear inscripcion
 
-        Inscripcion primerCuatri2025 = new Inscripcion(yo, new HashSet<>(Arrays.asList(Pdp, IyS)));
+        Inscripcion bcastoldiPrimerCuatri2025 = new Inscripcion(yo, new HashSet<>(Arrays.asList(Pdp, IyS)));
+        Inscripcion jperezPrimerCuatri2025 = new Inscripcion(otro, new HashSet<>(Arrays.asList(IyS, Pdp)));
 
-        Assertions.assertTrue(primerCuatri2025.aprobada());
+        Assertions.assertTrue(bcastoldiPrimerCuatri2025.aprobada());
+        Assertions.assertFalse(jperezPrimerCuatri2025.aprobada());
 
     }
   

@@ -14,6 +14,8 @@ class MateriaTest {
     public void cumpleCorrelativas(){
         // Crear alumno
         Alumno yo = new Alumno("Bianca", "Castoldi", 12345);
+        Alumno otro = new Alumno("Juan", "Perez", 67890);
+
 
         // Crear Materias
         Materia LyED = new Materia("Logica y Estructuras Discretas");
@@ -31,6 +33,8 @@ class MateriaTest {
         yo.agregarMateriaAprobada(AyED);
 
         assertTrue(Pdp.cumpleCorrelativas(yo));
+        assertFalse(Pdp.cumpleCorrelativas(otro));
+        assertTrue(LyED.cumpleCorrelativas(otro));
     }
   
 }
