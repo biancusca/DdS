@@ -1,0 +1,47 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Alumno{
+    - nombre: String
+    - apellido: String
+    - legajo: Integer
+    - materiasAprobadas: Set<Materia>
+
+    + agregarMateriaAprobada(materia: Materia): Void
+}
+
+class Inscripcion{
+    - materiasACursar: Set<Materia>
+    - alumno: Alumno
+    + aprobada(alumno): Boolean
+}
+
+
+class Materia{
+    - nombre: String
+    - correlativas: Set<Materia>
+
+    + cumpleCorrelativas(alumno: Alumno): boolean
+}
+
+' Relaciones:
+
+Alumno *-- Inscripcion
+ ' una inscripcion tiene un unico alumno asociado, y no tiene sentido de existencia sin el
+ ' un alumno puede tener una inscripcion o ninguna, si tenemos en cuenta que pudo no haberse anotado a cursar pero sigue siendo alumno de la facultad
+
+
+Materia "*" *-- "*" Inscripcion
+' una materia puede estar asociada a una o muchas inscripciones
+' una inscripcion puede tener una o muchas materias, pero no tiene sentido de existencia sin materias para cursar
+' una inscripcion tiene un unico alumno asociado, y tampoco tiene sentido de existencia sin el
+
+Alumno "*" <..> "*" Materia
+' un alumno puede tener muchas materias aprobadas o ninguna, si tenemos en cuenta que puede estar cursando el primer año de la carrera
+' una materia puede tener muchos alumnos o ninguno, si consideramos que quizas nadie se anoto a esa materia, pero sigue estando en el plan de carrera
+' cumpleCorrelativas recibe a un alumno, y accede a sus materias aprobadas para posteriormente verificar que cumpla con las correlativas de la materia en cuestion. Esto hace que Materia "conozca" a Alumno, y por ende hay una relacion de Uso
+
+Materia o--> "*" Materia
+' una materia puede tener muchas materias correlativas o ninguna
+' una materia tiene sentido de existencia sin materias correlativas
+@enduml
